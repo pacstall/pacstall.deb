@@ -1,0 +1,10 @@
+Package: pacstall
+Priority: optional
+Section: accessories
+Maintainer: Pacstall team <pacstall@pm.me>
+Uploaders:
+Architecture: all
+Version: 1.6-0
+Depends: bash | curl | wget | stow | build-essential | unzip | tree | bc | fakeroot
+Recommends: axel | ripgrep
+Description: An AUR inspired package manager for Ubuntu.
