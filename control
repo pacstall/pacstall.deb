@@ -1,0 +1,11 @@
+Package: pacstall
+Priority: optional
+Section: utilities
+Maintainer: Pacstall team <pacstall@pm.me>
+Homepage: https://pacstall.dev/
+Architecture: all
+Version: 1.6.0-1
+Depends: bash (>= 4.3-15ubuntu1) | sensible-utils | curl | wget | stow | build-essential | unzip | tree | bc | fakeroot
+Recommends: axel | ripgrep
+Description: An AUR inspired package manager for Ubuntu.
+ Pacstall will attempt to become the AUR Ubuntu wishes it had. It takes the AUR and puts a spin on it, making it easier to install programs without scouring github repos and the likes.

@@ -1,4 +1,5 @@
 Pacstall, an AUR inspired package manager for Ubuntu.
+
 Copyright (C) 2020-2021
 
 Pacstall is free software: you can redistribute it and/or modify
@@ -11,4 +12,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Pacstall. If not, see <https://www.gnu.org/licenses/>.
+along with Pacstall. If not, see <https://www.gnu.org/licenses/>
