@@ -1,10 +1,12 @@
-Package: pacstall
-Priority: optional
+Source: pacstall
 Section: utilities
+Priority: optional
 Maintainer: Pacstall team <pacstall@pm.me>
+Build-Depends: debhelper (>= 9)
+
+Package: pacstall
 Homepage: https://pacstall.dev/
 Architecture: all
-Version: 1.6.0-1
 Depends: bash (>= 4.3-15ubuntu1) | sensible-utils | curl | wget | stow | build-essential | unzip | tree | bc | fakeroot
 Recommends: axel | ripgrep
 Description: An AUR inspired package manager for Ubuntu.
