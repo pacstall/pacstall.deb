@@ -14,11 +14,12 @@ rm -rf "./bin"
 rm -rf "DEBIAN"
 
 mkdir -p "./usr/share/doc/pacstall"
+wait
 mkdir "DEBIAN"
 cp ../control ./DEBIAN/
-cp ../copyright ./usr/share/doc/pacstall
-cp ../changelog ./usr/share/doc/pacstall
-cp ../conffiles ./usr/share/doc/pacstall
+cp ../copyright ./usr/share/doc/pacstall/
+cp ../changelog ./usr/share/doc/pacstall/
+cp ../conffiles ./usr/share/doc/pacstall/
 
 mkdir "./bin"
 mkdir -p "./usr/share/pacstall/scripts"
