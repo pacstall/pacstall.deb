@@ -1,0 +1,4 @@
+debian/pacstall.substvars
+debian/pacstall/
+debian/pacstall.debhelper.log
+debian/files
