@@ -10,32 +10,42 @@ build:
 	@# Do nothing
 
 binary:
-	mkdir -p "debian/pacstall/usr/share/doc/pacstall"
-	mkdir "debian/pacstall/bin"
-	mkdir -p "debian/pacstall/usr/share/pacstall/scripts"
-	mkdir -p "debian/pacstall/usr/share/pacstall/repo"
-	mkdir -p "debian/pacstall/var/log/pacstall/error_log"
-	chmod 755 "debian/pacstall/var/log/pacstall/error_log"
-	mkdir -p "debian/pacstall/usr/share/man/man8"
-	mkdir -p "debian/pacstall/usr/share/bash-completion/completions"
+	mkdir -pm755 "debian/pacstall/usr/share/doc/pacstall"
+	mkdir -pm755 "debian/pacstall/bin"
+	mkdir -pm755 "debian/pacstall/usr/share/pacstall/scripts"
+	mkdir -pm755 "debian/pacstall/usr/share/pacstall/repo"
+	mkdir -pm755 "debian/pacstall/var/log/pacstall/error_log"
+	mkdir -pm755 "debian/pacstall/usr/share/man/man8"
+	mkdir -pm755 "debian/pacstall/usr/share/bash-completion/completions"
+	mkdir -pm755 "debian/pacstall/usr/share/fish/vendor_completions.d"
 
 	touch "debian/pacstall/usr/share/pacstall/repo/pacstallrepo.txt"
 	echo "https://raw.githubusercontent.com/pacstall/pacstall-programs/master" > "debian/pacstall/usr/share/pacstall/repo/pacstallrepo.txt"
 	
-	wget --show-progress -N "$(iarr)" -P "debian/pacstall/usr/share/pacstall/scripts/"
-
-	wget -q --show-progress --progress=bar:force -O "debian/pacstall/bin/pacstall" "https://raw.githubusercontent.com/pacstall/pacstall/master/pacstall" &
-	wget -q --show-progress --progress=bar:force -O "debian/pacstall/usr/share/man/man8/pacstall.8.gz" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/pacstall.8.gz" &
+	wait
 	
-	mkdir -p "debian/pacstall/usr/share/bash-completion/completions"
-	mkdir -p "debian/pacstall/usr/share/fish/vendor_completions.d"
-	wget -q --show-progress --progress=bar:force -O "debian/pacstall/usr/share/bash-completion/completions/pacstall" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/completion/bash" &
-	wget -q --show-progress --progress=bar:force -O "debian/pacstall/usr/share/fish/vendor_completions.d/pacstall.fish" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/completion/fish" &
+	wget -q --show-progress -O "debian/pacstall/bin/pacstall" "https://raw.githubusercontent.com/pacstall/pacstall/master/pacstall" &
+	wget -q --show-progress -O "debian/pacstall/usr/share/man/man8/pacstall.8.gz" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/pacstall.8.gz" &
+	
+	wait
+	
+	wget -q --show-progress -N "$(iarr)" -P "debian/pacstall/usr/share/pacstall/scripts/" &
+	
+	wget -q --show-progress -O "debian/pacstall/usr/share/bash-completion/completions/pacstall" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/completion/bash" &
+	wget -q --show-progress -O "debian/pacstall/usr/share/fish/vendor_completions.d/pacstall.fish" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/completion/fish" &
 
 	wait
-
-	chmod 755 "debian/pacstall/bin/pacstall"
-	chmod 755 debian/pacstall/usr/share/pacstall/scripts/*
 	
+	dh_fixperms
 	dh_gencontrol
+	dh_installchangelogs
+	dh_installdocs
+	
+	wait
+	
+	chmod 755 -R "debian/pacstall/usr/share/pacstall/scripts/"
+	chmod 755 "debian/pacstall/usr/share/fish/vendor_completions.d/pacstall.fish"
+	
+	dh_compress
+	dh_testroot
 	dh_builddeb
