@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
 i="add-repo.sh search.sh download.sh install-local.sh upgrade.sh remove.sh update.sh query-info.sh"
+# add error_log.sh in 1.6.0
 iarr := $(foreach wrd,$(i),"https://raw.githubusercontent.com/pacstall/pacstall/master/misc/scripts/$(wrd)")
 
 clean:
