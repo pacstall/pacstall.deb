@@ -1,5 +1,8 @@
 #!/usr/bin/make -f
 
+i="add-repo.sh search.sh download.sh install-local.sh upgrade.sh remove.sh update.sh query-info.sh"
+iarr := $(foreach wrd,$(i),"https://raw.githubusercontent.com/pacstall/pacstall/master/misc/scripts/$(wrd)")
+
 clean:
 	rm -rf "debian/pacstall"
 
@@ -18,10 +21,8 @@ binary:
 
 	touch "debian/pacstall/usr/share/pacstall/repo/pacstallrepo.txt"
 	echo "https://raw.githubusercontent.com/pacstall/pacstall-programs/master" > "debian/pacstall/usr/share/pacstall/repo/pacstallrepo.txt"
-
-	for i in {error_log.sh,add-repo.sh,search.sh,download.sh,install-local.sh,upgrade.sh,remove.sh,update.sh,query-info.sh}; do
-		wget -q --show-progress -N "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/scripts/$i" -P "debian/pacstall/usr/share/pacstall/scripts/" &
-	done
+	
+	wget --show-progress -N "$(iarr)" -P "debian/pacstall/usr/share/pacstall/scripts/"
 
 	wget -q --show-progress --progress=bar:force -O "debian/pacstall/bin/pacstall" "https://raw.githubusercontent.com/pacstall/pacstall/master/pacstall" &
 	wget -q --show-progress --progress=bar:force -O "debian/pacstall/usr/share/man/man8/pacstall.8.gz" "https://raw.githubusercontent.com/pacstall/pacstall/master/misc/pacstall.8.gz" &
